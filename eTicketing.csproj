@@ -14,12 +14,14 @@
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Controllers\" />
     <None Remove="Views\Actors\" />
+    <None Remove="Views\Producers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Data\Enum\" />
     <Folder Include="Controllers\" />
     <Folder Include="Views\Actors\" />
+    <Folder Include="Views\Producers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />

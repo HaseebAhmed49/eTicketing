@@ -23,8 +23,10 @@ namespace eTicketing.Controllers
         // Index is default controller
         public async Task<IActionResult> Index()
         {
-            var data = await _context.Producers.ToListAsync();
-            return View();
+            var allProduces = await _context.Producers.ToListAsync();
+            return View(allProduces);
+            // IF you have a view with a different name, then you have to send the all producers data to that view use below
+         //   return View("IndexView",allProduces);
         }
     }
 }
