@@ -16,6 +16,7 @@
     <None Remove="Views\Actors\" />
     <None Remove="Views\Producers\" />
     <None Remove="Views\Cinemas\" />
+    <None Remove="Views\Movies\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -24,6 +25,7 @@
     <Folder Include="Views\Actors\" />
     <Folder Include="Views\Producers\" />
     <Folder Include="Views\Cinemas\" />
+    <Folder Include="Views\Movies\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />

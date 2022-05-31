@@ -24,8 +24,8 @@ namespace eTicketing.Controllers
         // Index is default controller
         public async Task<IActionResult> Index()
         {
-            var data = await _context.Movies.ToListAsync();
-            return View();
+            var data = await _context.Movies.Include(n=>n.Cinema).OrderBy(o=>o.Name).ToListAsync();
+            return View(data);
         }
     }
 }
