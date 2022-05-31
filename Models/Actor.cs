@@ -8,10 +8,13 @@ namespace eTicketing.Models
         [Key]
         public int Id { get; set; }
 
+        [Display(Name = "Profile Picture URL")]
         public string ProfilePictureUrl { get; set; }
 
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
+        [Display(Name = "Biogrophy")]
         public string Bio { get; set; }
 
         // Relationships

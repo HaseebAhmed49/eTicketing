@@ -22,7 +22,7 @@ namespace eTicketing.Controllers
         public IActionResult Index()
         {
             var data = _context.Actors.ToList();
-            return View();
+            return View(data);
         }
     }
 }
