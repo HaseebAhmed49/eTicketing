@@ -1,10 +1,19 @@
 ﻿using eTicketing.Data;
+using eTicketing.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+
+//LifeTime Explanation
+
+//Singleton.  Single Instance is created
+//Scoped		Once per request within scope
+//Transient	Created each time once requested
+
+builder.Services.AddScoped<IActorInterface, ActorService>();
 
 builder.Services.AddControllersWithViews();
 

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using eTicketing.Models;
 
 namespace eTicketing.Data.Services
 {
-	public interface IActorsService
+	public interface IActorInterface
 	{
 		IEnumerable<Actor> GetAll();
 
@@ -11,8 +11,9 @@ namespace eTicketing.Data.Services
 
 		void Add(Actor actor);
 
-		Actor Update(int id, Actor newActor);
+		Actor Update(int id,Actor newActor);
 
 		void Delete(int id);
 	}
 }
+
