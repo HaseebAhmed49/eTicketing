@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eTicketing.Data;
 using eTicketing.Data.Services;
+using eTicketing.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -30,6 +31,19 @@ namespace eTicketing.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+
+        // Bind Properties that user will enter. Id will not be user by default so we dont bind that.
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureUrl,Bio")]Actor actor)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            _service.Add(actor);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
