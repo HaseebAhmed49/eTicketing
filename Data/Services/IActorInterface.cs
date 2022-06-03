@@ -5,7 +5,7 @@ namespace eTicketing.Data.Services
 {
 	public interface IActorInterface
 	{
-		IEnumerable<Actor> GetAll();
+		Task<IEnumerable<Actor>> GetAll();
 
 		Actor GetById(int id);
 

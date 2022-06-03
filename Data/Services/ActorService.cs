@@ -23,9 +23,9 @@ namespace eTicketing.Data.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Actor> GetAll()
+        public async Task<IEnumerable<Actor>> GetAll()
         {
-            var result = _context.Actors.ToList();
+            var result = await _context.Actors.ToListAsync();
             return result;
         }
 
