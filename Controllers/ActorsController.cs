@@ -23,7 +23,7 @@ namespace eTicketing.Controllers
         // GET: /<controller>/
         public async Task<IActionResult> Index()
         {
-            var data = await _service.GetAll();
+            var data = await _service.GetAllASync();
                 return View(data);
         }
 
@@ -40,11 +40,21 @@ namespace eTicketing.Controllers
         {
             if(!ModelState.IsValid)
             {
+               // _service.Add(actor);
                 return View(actor);
             }
-            _service.Add(actor);
+            await _service.AddASync(actor);
             return RedirectToAction(nameof(Index));
         }
+
+        // Get: Actors/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var actorDetails = await _service.GetByIdASync(id);
+            if (actorDetails == null) return View("Empty");
+            return View(actorDetails);
+        }
+
     }
 }
 

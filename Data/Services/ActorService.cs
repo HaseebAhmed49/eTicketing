@@ -13,10 +13,10 @@ namespace eTicketing.Data.Services
             _context = context;
         }
 
-        public void Add(Actor actor)
+        public async Task AddASync(Actor actor)
         {
             _context.Actors.Add(actor);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public void Delete(int id)
@@ -24,7 +24,7 @@ namespace eTicketing.Data.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Actor>> GetAll()
+        public async Task<IEnumerable<Actor>> GetAllASync()
         {
             var result = await _context.Actors.ToListAsync();
             return result;
@@ -36,9 +36,10 @@ namespace eTicketing.Data.Services
         //    return result;
         //}
 
-        public Actor GetById(int id)
+        public async Task<Actor> GetByIdASync(int id)
         {
-            throw new NotImplementedException();
+            var actor = await _context.Actors.FirstOrDefaultAsync(a=> a.Id==id);
+            return actor;
         }
 
         public Actor Update(int id, Actor newActor)

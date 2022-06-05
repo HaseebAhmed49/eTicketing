@@ -5,11 +5,12 @@ namespace eTicketing.Data.Services
 {
 	public interface IActorInterface
 	{
-		Task<IEnumerable<Actor>> GetAll();
+		Task<IEnumerable<Actor>> GetAllASync();
 
-		Actor GetById(int id);
 
-		void Add(Actor actor);
+		Task<Actor> GetByIdASync(int id);
+
+		Task AddASync(Actor actor);
 
 		Actor Update(int id,Actor newActor);
 
