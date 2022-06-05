@@ -22,7 +22,7 @@ namespace eTicketing.Controllers
 
         // GET: /<controller>/
         public async Task<IActionResult> Index()
-        {
+        {            
             var data = await _service.GetAllASync();
                 return View(data);
         }

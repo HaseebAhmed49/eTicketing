@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using eTicketing.Data.Base;
 
 namespace eTicketing.Models
 {
-	public class Actor
+	public class Actor: IEntityBase
 	{
         [Key]
         public int Id { get; set; }
