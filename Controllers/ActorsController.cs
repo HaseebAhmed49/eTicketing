@@ -40,7 +40,6 @@ namespace eTicketing.Controllers
         {
             if(!ModelState.IsValid)
             {
-               // _service.Add(actor);
                 return View(actor);
             }
             await _service.AddASync(actor);
@@ -55,7 +54,7 @@ namespace eTicketing.Controllers
             return View(actorDetails);
         }
 
-        // Get: Actors/Create
+        // Get: Actors/Edit
         public async Task<IActionResult> Edit(int id)
         {
             var actorDetails = await _service.GetByIdASync(id);
@@ -70,12 +69,32 @@ namespace eTicketing.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // _service.Add(actor);
                 return View(actor);
             }
             await _service.UpdateASync(id,actor);
             return RedirectToAction(nameof(Index));
         }
+
+        // Delete Actors/Delete
+        public async Task<IActionResult> Delete(int id)
+        {
+            var actorDetails = await _service.GetByIdASync(id);
+            if (actorDetails == null) return View("NotFound");
+            return View(actorDetails);
+        }
+
+
+        // Bind Properties that user will enter. Id will not be user by default so we dont bind that.
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var actorDetails = await _service.GetByIdASync(id);
+            if (actorDetails == null) return View("NotFound");
+
+            await _service.DeleteASync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
 
