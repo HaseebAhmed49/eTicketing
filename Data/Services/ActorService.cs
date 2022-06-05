@@ -42,9 +42,20 @@ namespace eTicketing.Data.Services
             return actor;
         }
 
-        public Actor Update(int id, Actor newActor)
+        public async Task<Actor> UpdateASync(int id, Actor newActor)
         {
-            throw new NotImplementedException();
+            var actor = await _context.Actors.FirstOrDefaultAsync(a => a.Id == id);
+            if(actor!=null)
+            {
+                actor.FullName = newActor.FullName;
+                actor.ProfilePictureUrl = newActor.ProfilePictureUrl;
+                actor.Bio = newActor.Bio;
+
+                _context.Update(actor);
+                await _context.SaveChangesAsync();
+                return newActor;
+            }
+            return actor;
         }
     }
 }

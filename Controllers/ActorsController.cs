@@ -51,10 +51,31 @@ namespace eTicketing.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var actorDetails = await _service.GetByIdASync(id);
-            if (actorDetails == null) return View("Empty");
+            if (actorDetails == null) return View("NotFound");
             return View(actorDetails);
         }
 
+        // Get: Actors/Create
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetByIdASync(id);
+            if (actorDetails == null) return View("NotFound");
+            return View(actorDetails);
+        }
+
+
+        // Bind Properties that user will enter. Id will not be user by default so we dont bind that.
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,[Bind("Id,FullName,ProfilePictureUrl,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                // _service.Add(actor);
+                return View(actor);
+            }
+            await _service.UpdateASync(id,actor);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 

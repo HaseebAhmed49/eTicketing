@@ -12,7 +12,7 @@ namespace eTicketing.Data.Services
 
 		Task AddASync(Actor actor);
 
-		Actor Update(int id,Actor newActor);
+		Task<Actor> UpdateASync(int id,Actor newActor);
 
 		void Delete(int id);
 	}
