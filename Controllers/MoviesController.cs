@@ -37,6 +37,14 @@ namespace eTicketing.Controllers
 
         }
 
+        // Get: Movies/Create
+        public IActionResult Create()
+        {
+            ViewData["Welcome"] = "Welcome to eTicketing";
+            ViewBag.Description = "this is test description";
+
+            return View();
+        }
     }
 }
 
