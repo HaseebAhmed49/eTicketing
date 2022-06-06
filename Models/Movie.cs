@@ -2,10 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using eTicketing.Data;
+using eTicketing.Data.Base;
 
 namespace eTicketing.Models
 {
-	public class Movie
+	public class Movie: IEntityBase
 	{
         [Key]
         public int Id { get; set; }
