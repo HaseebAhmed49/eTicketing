@@ -51,6 +51,45 @@ namespace eTicketing.Controllers
             await _service.AddASync(producer);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var producers = await _service.GetByIdASync(id);
+            if (producers == null) return View("NotFound");
+            return View(producers);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,[Bind("Id,FullName,ProfilePictureUrl,Bio")] Producer producer)
+        {
+            if (!ModelState.IsValid) return View(producer);
+            if(id == producer.Id)
+            {
+                await _service.UpdateASync(id, producer);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(producer);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var producers = await _service.GetByIdASync(id);
+            if (producers == null) return View("NotFound");
+            return View(producers);
+        }
+
+
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var producers = await _service.GetByIdASync(id);
+            if (producers == null) return View("NotFound");
+
+            await _service.DeleteASync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
 
