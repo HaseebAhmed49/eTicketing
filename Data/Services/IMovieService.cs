@@ -6,6 +6,7 @@ namespace eTicketing.Data.Services
 {
 	public interface IMovieService:IEntityBaseRepository<Movie>
 	{
+		Task<Movie> GetMovieByIdASync(int id);
 	}
 }
 

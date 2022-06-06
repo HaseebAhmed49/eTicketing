@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eTicketing.Data;
+using eTicketing.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,11 +13,11 @@ namespace eTicketing.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IMovieService _service;
 
-        public MoviesController(AppDbContext context)
+        public MoviesController(IMovieService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: /<controller>/
@@ -24,9 +25,18 @@ namespace eTicketing.Controllers
         // Index is default controller
         public async Task<IActionResult> Index()
         {
-            var data = await _context.Movies.Include(n=>n.Cinema).OrderBy(o=>o.Name).ToListAsync();
+            var data = await _service.GetAllASync(n=> n.Cinema);
             return View(data);
         }
+
+        // Get: Movies/Details
+        public async Task<IActionResult> Details(int id)
+        {
+            var movieDetails = await _service.GetMovieByIdASync(id);
+            return View(movieDetails);
+
+        }
+
     }
 }
 
