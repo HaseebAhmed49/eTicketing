@@ -14,6 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 //Transient	Created each time once requested
 
 builder.Services.AddScoped<IActorInterface, ActorService>();
+builder.Services.AddScoped<IProducerService, ProducerService>();
+
 
 builder.Services.AddControllersWithViews();
 

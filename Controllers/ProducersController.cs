@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eTicketing.Data;
+using eTicketing.Data.Services;
+using eTicketing.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,21 +14,42 @@ namespace eTicketing.Controllers
 {
     public class ProducersController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IProducerService _service;
 
-        public ProducersController(AppDbContext context)
+        public ProducersController(IProducerService service)
         {
-            _context = context;
+            _service = service;
         }
         // GET: /<controller>/
 
         // Index is default controller
         public async Task<IActionResult> Index()
         {
-            var allProduces = await _context.Producers.ToListAsync();
+            var allProduces = await _service.GetAllASync();
             return View(allProduces);
             // IF you have a view with a different name, then you have to send the all producers data to that view use below
          //   return View("IndexView",allProduces);
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var producerDetails = await _service.GetByIdASync(id);
+            if (producerDetails == null) return View("NotFound");
+            return View(producerDetails);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureUrl,Bio")] Producer producer)
+        {
+            if(!ModelState.IsValid) return View(producer);
+            await _service.AddASync(producer);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
