@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eTicketing.Data;
 using eTicketing.Data.Services;
+using eTicketing.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,74 @@ namespace eTicketing.Controllers
             ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
 
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(NewMovieVM newMovieVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+                ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+                ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+                ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
+                return View(newMovieVM);
+            }
+            await _service.AddNewMovieASync(newMovieVM);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // Get: Movies/Edit/1
+        public async Task<IActionResult> Edit(int id)
+        {
+            var movieDetails = await _service.GetMovieByIdASync(id);
+            if (movieDetails == null) return View("NotFound");
+
+            var response = new NewMovieVM()
+            {
+                Id = movieDetails.Id,
+                Name = movieDetails.Name,
+                Description = movieDetails.Description,
+                ImageUrl = movieDetails.ImageUrl,
+                Price = movieDetails.Price,
+                StartDate = movieDetails.StartDate,
+                EndTime = movieDetails.EndTime,
+                MovieCategory = movieDetails.MovieCategory,
+                CinemaId = movieDetails.CinemaId,
+                ProducerId = movieDetails.ProducerId,
+                ActorIds = movieDetails.Actors_Movies.Select(n => n.ActorId).ToList()
+            };
+
+            var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, NewMovieVM newMovieVM)
+        {
+            if (id != newMovieVM.Id) return View("NotFound");
+
+
+
+            if (!ModelState.IsValid)
+            {
+                var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+                ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+                ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+                ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
+                return View(newMovieVM);
+            }
+            await _service.UpdateMovieASync(newMovieVM);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
