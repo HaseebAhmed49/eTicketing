@@ -6,85 +6,61 @@
 
 <div class="row">
     @foreach (var item in Model)
-        {
-            <div class="col-md-4 col-xs-6 border-primary mb-3">
-                <div class="card mb-3" style="max-width: 540px">
-                    <div class="row g-0">
-                        <div class="col-md-12">
-                            <div class="card-header text-white bg-info">
-                                <p class="card-text">
-                                    <h5 class="card-title">
-                                        @item.Name
-                                        <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
-                                    </h5>
-                                </p>
-                            </div>
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Name
+                                    <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
+                                </h5>
+                            </p>
                         </div>
-                        <div class="col-md-6">
-                            <img src="@item.ImageUrl" alt="@item.Name" width="100%" alt=""/>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImageUrl" alt="@item.Name" width="100%" alt="" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class= ="card-body text-center">
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><b>Cinemas: </b>@item.Cinema.Name</p>
+                            <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
+                            <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>End Date: </b>@item.EndTime.ToString("dd MMM yy")</p>
+                            <p class="card-text">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndTime)
+                                {
+                                    <span class="badge bg-success text-white">AVAILABLE</span>
+                                }
+                                else if (DateTime.Now >= item.EndTime)
+                                {
+                                    <span class="badge bg-danger text-white">DANGER</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary text-white">UPCOMING</span>
+                                }
+                            </p>
                         </div>
-                        <div class="col-md-6">
-                            <div class= ="card-body text-center">
-                                <p class="card-text">@item.Description</p>
-                                <p class="card-text"><b>Cinemas: </b>@item.Cinema.Name</p>
-                                <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
-                                <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
-                                <p class="card-text"><b>End Date: </b>@item.EndTime.ToString("dd MMM yy")</p>
-                                <p class="card-text">
-                                    <b>Status: </b>
-                                    @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndTime)
-                                    {
-                                        <span class="badge bg-success text-white">AVAILABLE</span>
-                                    }
-                                    else if (DateTime.Now >= item.EndTime)
-                                    {
-                                        <span class="badge bg-danger text-white">DANGER</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-primary text-white">UPCOMING</span>
-                                    }
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="card-footer">
-                                <p class="card-text">
-                                    <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
-                                    <i class="bi bi-eye-fill"></i> Show Details</a>
-                                    <a class="btn btn-success text-right"><i class="bi bi-cart-plus"></i> Add to Cart (Price: $@item.Price)</a>
-                                </p>
-                            </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill"></i> Show Details
+                                </a>
+                                <a class="btn btn-success text-right"><i class="bi bi-cart-plus"></i> Add to Cart (Price: $@item.Price)</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        }
-    @*<div class="col-md-8 offset-md-2">
-        <table class="table">
-            <thead>
-                <tr class="text-center">
-                    <th>@Html.DisplayNameFor(model => model.ImageUrl)</th>
-                    <th>@Html.DisplayNameFor(model => model.Name)</th>
-                    <th>@Html.DisplayNameFor(model => model.Description)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="align-middle">
-                            <img class="rounded-circle" src="@item.ImageUrl" alt="@item.Name" style="max-width:150px" />
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>*@
+        </div>
+    }
 </div>
+
+@await Html.PartialAsync("_CreateItem", "Movies"); 
