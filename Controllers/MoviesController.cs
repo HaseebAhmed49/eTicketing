@@ -31,6 +31,20 @@ namespace eTicketing.Controllers
             return View(data);
         }
 
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var alldata = await _service.GetAllASync(n => n.Cinema);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var filteredresults = alldata.Where(n => n.Name.Contains(searchString) || n.Description.Contains(searchString)).ToList();
+                return View("Index", filteredresults);
+
+            }
+            return View("Index", alldata);
+        }
+
+
         // Get: Movies/Details
         public async Task<IActionResult> Details(int id)
         {
@@ -118,6 +132,7 @@ namespace eTicketing.Controllers
             await _service.UpdateMovieASync(newMovieVM);
             return RedirectToAction(nameof(Index));
         }
+
     }
 }
 
