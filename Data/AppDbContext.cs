@@ -44,4 +44,3 @@ namespace eTicketing.Data
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 }
-
