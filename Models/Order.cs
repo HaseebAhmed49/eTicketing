@@ -15,4 +15,3 @@ namespace eTicketing.Models
         public List<OrderItem> OrderItems { get; set; }
     }
 }
-

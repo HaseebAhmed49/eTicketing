@@ -21,6 +21,7 @@
     <None Remove="Data\Base\" />
     <None Remove="Data\ViewModels\" />
     <None Remove="Data\Cart\" />
+    <None Remove="Views\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -34,6 +35,7 @@
     <Folder Include="Data\Base\" />
     <Folder Include="Data\ViewModels\" />
     <Folder Include="Data\Cart\" />
+    <Folder Include="Views\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
