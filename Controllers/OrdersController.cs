@@ -22,7 +22,7 @@ namespace eTicketing.Controllers
             _shoppingCart = shoppingCart;
         }
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult ShoppingCart()
         {
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
@@ -34,6 +34,27 @@ namespace eTicketing.Controllers
             return View(response);
 
         }
+
+        public async Task<IActionResult> AddItemToShoppingCart(int id)
+        {
+            var movie = await _movieService.GetMovieByIdASync(id);
+            if(movie!=null)
+            {
+                _shoppingCart.AddItemToCart(movie);
+            }
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+
+        public async Task<IActionResult> RemoveItemFromShoppingCart(int id)
+        {
+            var movie = await _movieService.GetMovieByIdASync(id);
+            if (movie != null)
+            {
+                _shoppingCart.RemoveItemfromCart(movie);
+            }
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+
     }
 }
 

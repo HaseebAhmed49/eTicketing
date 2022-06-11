@@ -22,6 +22,9 @@
     <None Remove="Data\ViewModels\" />
     <None Remove="Data\Cart\" />
     <None Remove="Views\Orders\" />
+    <None Remove="Data\ViewComponents\" />
+    <None Remove="Views\Shared\Components\" />
+    <None Remove="Views\Shared\Components\ShoppingCartSummary\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -36,6 +39,9 @@
     <Folder Include="Data\ViewModels\" />
     <Folder Include="Data\Cart\" />
     <Folder Include="Views\Orders\" />
+    <Folder Include="Data\ViewComponents\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\ShoppingCartSummary\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
