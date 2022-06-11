@@ -44,7 +44,7 @@ namespace eTicketing.Data.Services
                 };
                 await _context.OrderItems.AddAsync(orderItem);
             }
-            await _context.SaveChangesAsync();s
+            await _context.SaveChangesAsync();
         }
 
 
