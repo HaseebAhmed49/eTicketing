@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "+b8Zd7sZh0RHBED/9/RUBpM4yKeEI9u1xx3B3/R0rLg7xqoo8bdI5SgrEuUQjhK7PWyMxC+SrKK1yb1B4OLFQg==",
+  "dgSpecHash": "wr8F+vrFWWAc77CjAA4jfTmUy6J9JBsqVhqOD44i3kJQy8JcQOMdvj9Kx4aIHvYTSNdTFjVge4AY1znh54iVPA==",
   "success": true,
   "projectFilePath": "/Users/haseebahmed/Desktop/New Practice/eTicketing/eTicketing/eTicketing.csproj",
   "expectedPackageFiles": [
     "/Users/haseebahmed/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
+    "/Users/haseebahmed/.nuget/packages/microsoft.aspnetcore.cryptography.internal/6.0.5/microsoft.aspnetcore.cryptography.internal.6.0.5.nupkg.sha512",
+    "/Users/haseebahmed/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/6.0.5/microsoft.aspnetcore.cryptography.keyderivation.6.0.5.nupkg.sha512",
+    "/Users/haseebahmed/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/6.0.5/microsoft.aspnetcore.identity.entityframeworkcore.6.0.5.nupkg.sha512",
     "/Users/haseebahmed/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/Users/haseebahmed/.nuget/packages/microsoft.data.sqlclient/2.1.4/microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "/Users/haseebahmed/.nuget/packages/microsoft.data.sqlclient.sni.runtime/2.1.1/microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
@@ -20,6 +23,8 @@
     "/Users/haseebahmed/.nuget/packages/microsoft.extensions.configuration.abstractions/6.0.0/microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "/Users/haseebahmed/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.0/microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "/Users/haseebahmed/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/Users/haseebahmed/.nuget/packages/microsoft.extensions.identity.core/6.0.5/microsoft.extensions.identity.core.6.0.5.nupkg.sha512",
+    "/Users/haseebahmed/.nuget/packages/microsoft.extensions.identity.stores/6.0.5/microsoft.extensions.identity.stores.6.0.5.nupkg.sha512",
     "/Users/haseebahmed/.nuget/packages/microsoft.extensions.logging/6.0.0/microsoft.extensions.logging.6.0.0.nupkg.sha512",
     "/Users/haseebahmed/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "/Users/haseebahmed/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",

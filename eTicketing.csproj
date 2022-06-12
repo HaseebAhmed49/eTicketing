@@ -25,6 +25,7 @@
     <None Remove="Data\ViewComponents\" />
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\ShoppingCartSummary\" />
+    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -50,5 +51,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
   </ItemGroup>
 </Project>
