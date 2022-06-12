@@ -26,6 +26,7 @@
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\ShoppingCartSummary\" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <None Remove="Data\Static\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -43,6 +44,7 @@
     <Folder Include="Data\ViewComponents\" />
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="Views\Shared\Components\ShoppingCartSummary\" />
+    <Folder Include="Data\Static\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
