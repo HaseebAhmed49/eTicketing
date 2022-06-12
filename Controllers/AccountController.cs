@@ -73,13 +73,21 @@ namespace eTicketing.Controllers
             {
                 FullName = registerVM.FullName,
                 Email = registerVM.EmailAddress,
-                UserName = registerVM.EmailAddress
+                UserName = registerVM.EmailAddress,
+                EmailConfirmed = true
             };
             var newUserResponse = await _userManager.CreateAsync(newUser,registerVM.Password);
             if(newUserResponse.Succeeded)
                 await _userManager.AddToRoleAsync(newUser,UserRoles.User);
 
             return View("RegisterCompleted");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index","Movies");
         }
     }
 }
