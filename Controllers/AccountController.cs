@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eTicketing.Data;
+using eTicketing.Data.ViewModels;
 using eTicketing.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,9 +27,32 @@ namespace eTicketing.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Login() => View(new LoginVM());
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View(loginVM);
+
+            var user = await _userManager.FindByEmailAsync(loginVM.EmailAddress);
+            if(user!=null)
+            {
+                var passwordCheck = _userManager.CheckPasswordAsync(user, loginVM.Password);
+                if(passwordCheck.Result!=false)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(user,loginVM.Password,false,false);
+                    if(result.Succeeded)
+                    {
+                        return RedirectToAction("Index","Movies");
+                    }
+                }
+                TempData["Error"] = "Wrong Credentials. Please, try again!";
+                return View(loginVM);
+            }
+            TempData["Error"] = "Wrong Credentials. Please, try again!";
+            return View(loginVM);
+
         }
     }
 }
