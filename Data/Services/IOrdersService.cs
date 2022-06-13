@@ -7,7 +7,7 @@ namespace eTicketing.Data.Services
 	{
 		Task StoreOrderASync(List<ShoppingCartItem> items, string userId, string userEmailAddress);
 
-		Task<List<Order>> GetOrdersByUserIdASync(string userId);
+		Task<List<Order>> GetOrdersByUserIdAndRoleASync(string userId,string userRole);
 	}
 }
 

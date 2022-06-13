@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTicketing.Models
 {
@@ -12,6 +13,8 @@ namespace eTicketing.Models
 
         public string UserId { get; set; }
 
+        [ForeignKey(nameof(UserId))]
+        public ApplicationUser User { get; set; }
         public List<OrderItem> OrderItems { get; set; }
     }
 }
