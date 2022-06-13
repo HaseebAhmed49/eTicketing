@@ -8,6 +8,7 @@ using eTicketing.Data.ViewModels;
 using eTicketing.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,6 +26,12 @@ namespace eTicketing.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+        }
+
+        public async Task<IActionResult> Users()
+        {
+            var users = await _context.Users.ToListAsync();
+            return View(users);
         }
 
         // GET: /<controller>/
