@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using eTicketing.Data;
 using eTicketing.Data.Services;
 using eTicketing.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTicketing.Controllers
 {
+    [Authorize]
     public class ProducersController : Controller
     {
         private readonly IProducerService _service;
@@ -23,6 +25,7 @@ namespace eTicketing.Controllers
         // GET: /<controller>/
 
         // Index is default controller
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allProduces = await _service.GetAllASync();
@@ -31,6 +34,7 @@ namespace eTicketing.Controllers
          //   return View("IndexView",allProduces);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var producerDetails = await _service.GetByIdASync(id);

@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using eTicketing.Data;
 using eTicketing.Data.Services;
 using eTicketing.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace eTicketing.Controllers
 {
+    [Authorize]
     public class ActorsController : Controller
     {
         private readonly IActorInterface _service;
@@ -20,6 +22,7 @@ namespace eTicketing.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         // GET: /<controller>/
         public async Task<IActionResult> Index()
         {            
@@ -47,6 +50,7 @@ namespace eTicketing.Controllers
         }
 
         // Get: Actors/Details/1
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var actorDetails = await _service.GetByIdASync(id);

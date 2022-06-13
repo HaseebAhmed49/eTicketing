@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using eTicketing.Data.Cart;
 using eTicketing.Data.Services;
 using eTicketing.Data.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace eTicketing.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IMovieService _movieService;
