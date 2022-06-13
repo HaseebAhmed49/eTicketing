@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using eTicketing.Data.Cart;
 using eTicketing.Data.Services;
+using eTicketing.Data.Static;
 using eTicketing.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
