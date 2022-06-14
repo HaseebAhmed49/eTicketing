@@ -84,9 +84,16 @@ namespace eTicketing.Controllers
                 EmailConfirmed = true
             };
             var newUserResponse = await _userManager.CreateAsync(newUser,registerVM.Password);
-            if(newUserResponse.Succeeded)
-                await _userManager.AddToRoleAsync(newUser,UserRoles.User);
-
+            TempData["Error"] = "";
+            if (!newUserResponse.Succeeded && newUserResponse.Errors.Count() > 0)
+            {
+                foreach (var error in newUserResponse.Errors)
+                {
+                    TempData["Error"] = error.Description + " " + TempData["Error"];
+                }
+                return View(registerVM);
+            }
+            await _userManager.AddToRoleAsync(newUser, UserRoles.User);
             return View("RegisterCompleted");
         }
 
