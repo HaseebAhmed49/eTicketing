@@ -75,7 +75,7 @@
                                 <a class="btn btn-outline-primary float-right" asp-action="Index">
                                     <i class="bi bi-eye-fill"></i> Back to List
                                 </a>
-                                <a class="btn btn-success text-right" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add to Cart (Price: $@Model.Price)</a>
+                                <a class="btn btn-success text-white @((DateTime.Now > Model.EndTime) ? "disabled" : "")" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add to Cart (Price: $@Model.Price)</a>
                             </p>
                         </div>
                     </div>

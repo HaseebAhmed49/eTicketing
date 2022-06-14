@@ -42,7 +42,11 @@ namespace eTicketing.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteredresults = alldata.Where(n => n.Name.Contains(searchString) || n.Description.Contains(searchString)).ToList();
+                var filteredresults = alldata.Where(n => n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower())).ToList();
+
+                var filteredresultsNew = alldata.Where(n => string.Equals(n.Name,searchString,StringComparison.CurrentCultureIgnoreCase) || string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+
                 return View("Index", filteredresults);
 
             }
