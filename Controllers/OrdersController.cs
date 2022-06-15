@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eTicketing.Controllers
 {
-    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IMovieService _movieService;
