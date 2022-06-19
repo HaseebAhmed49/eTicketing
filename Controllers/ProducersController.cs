@@ -85,7 +85,7 @@ namespace eTicketing.Controllers
         }
 
 
-        [HttpPost,ActionName("Delete")]
+        [HttpDelete,ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var producers = await _service.GetByIdASync(id);
