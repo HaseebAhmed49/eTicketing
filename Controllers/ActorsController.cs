@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eTicketing.Controllers
 {
-    [Authorize(Roles = UserRoles.Admin)]
     public class ActorsController : Controller
     {
         private readonly IActorInterface _service;
